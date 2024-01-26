@@ -32,10 +32,6 @@ async def entrypoint(input: Input):
     loop = asyncio.get_event_loop()
     ts = time.time()
     vector = await loop.run_in_executor(pool, functools.partial(model_predict, text=input.text))
-    # vector = model_predict()
-    print(f"Model  : {int((time.time() - ts) * 1000)}ms")
-    ts = time.time()
-    print(f"io task: {int((time.time() - ts) * 1000)}ms")
     return {"response": vector.tolist()}
 
 
